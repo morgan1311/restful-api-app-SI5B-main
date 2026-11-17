@@ -9,6 +9,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+
 const logger = require('./middlewares/logger');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
 
@@ -16,7 +17,8 @@ const mahasiswaRoutes = require('./routes/mahasiswaRoutes');
 const fakultasRoutes = require('./routes/fakultasRoutes');
 const prodiRoutes = require('./routes/prodiRoutes');
 const dosenRoutes = require('./routes/dosenRoutes');
-const authRoutes = require('./routes/authRoutes');   // bersama require lainnya
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');    // bersama require lainnya
 
 
 const app = express();
@@ -46,7 +48,8 @@ app.use('/mahasiswa', mahasiswaRoutes);
 app.use('/fakultas', fakultasRoutes);
 app.use('/prodi', prodiRoutes);
 app.use('/dosen', dosenRoutes);
-app.use('/auth', authRoutes);                          // sebelum app.use(notFoundHandler)
+app.use('/auth', authRoutes);
+app.use('/users', userRoutes);                          // sebelum app.use(notFoundHandler)
 // ---------- Handler 404 dan error handler (paling bawah) ----------
 app.use(notFoundHandler);
 app.use(errorHandler);
